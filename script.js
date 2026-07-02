@@ -1,24 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const searchInput = document.getElementById('searchGuest');
-    if (!searchInput) return;
-
-    searchInput.addEventListener('keyup', function() {
-        const filter = this.value.toLowerCase();
-        const cards = document.querySelectorAll('.table-card');
-
-        cards.forEach(card => {
-            const guestList = card.getAttribute('data-guests').toLowerCase();
-            const parentCol = card.parentElement;
-            
-            if (guestList.includes(filter)) {
-                parentCol.style.display = "";
-            } else {
-                parentCol.style.display = "none";
-            }
-        });
-    });
-});
-document.addEventListener('DOMContentLoaded', () => {
     
     // 1. GENEROWANIE DANYCH TESTOWYCH (120 osób, po 8 na stolik)
     const imiona = ["Anna", "Piotr", "Katarzyna", "Michał", "Jan", "Małgorzata", "Tomasz", "Magdalena", "Krzysztof", "Barbara", "Andrzej", "Ewa"];
@@ -40,24 +20,41 @@ document.addEventListener('DOMContentLoaded', () => {
         stoliki[tableNumber].push(pelneImie);
         guestCount++;
 
-        // Przeskok na kolejny stolik co 8 osób
         if (guestCount === 8) {
             tableNumber++;
             guestCount = 0;
         }
     }
 
-    // 2. RENDEROWANIE IKONEK STOLIKÓW Z DYMKAMI
-    const hallGrid = document.getElementById('hallGrid');
-    if (!hallGrid) return;
+    // 2. WSPÓŁRZĘDNE NA MAPIE (15 STOLIKÓW) 
+    const wspolrzedneStolikow = [
+        { top: '12%', left: '50%' }, // 1
+        { top: '22%', left: '20%' }, // 2
+        { top: '22%', left: '80%' }, // 3
+        { top: '45%', left: '15%' }, // 4
+        { top: '45%', left: '85%' }, // 5
+        { top: '70%', left: '15%' }, // 6
+        { top: '70%', left: '85%' }, // 7
+        { top: '88%', left: '25%' }, // 8
+        { top: '88%', left: '75%' }, // 9
+        { top: '88%', left: '50%' }, // 10
+        { top: '45%', left: '32%' }, // 11
+        { top: '45%', left: '68%' }, // 12
+        { top: '68%', left: '32%' }, // 13
+        { top: '68%', left: '68%' }, // 14
+        { top: '25%', left: '35%' }  // 15
+    ];
+
+    // 3. RENDEROWANIE MAPY SALI Z IKONKAMI
+    const hallMap = document.getElementById('hallMap');
+    if (!hallMap) return;
 
     for (const [nr, goscie] of Object.entries(stoliki)) {
-        // Tworzymy HTML dla listy gości w dymku
         const listItemsHTML = goscie.map(g => `<li>${g}</li>`).join('');
+        const coords = wspolrzedneStolikow[nr - 1] || { top: '50%', left: '50%' };
 
-        // Generujemy cały element: Wrapper -> Ikona stolika + Tooltip
         const tableHTML = `
-            <div class="table-wrapper">
+            <div class="table-wrapper" style="top: ${coords.top}; left: ${coords.left};">
                 <div class="table-icon" id="stolik-${nr}" data-table="${nr}">
                     ${nr}
                 </div>
@@ -70,27 +67,23 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `;
         
-        hallGrid.innerHTML += tableHTML;
+        hallMap.innerHTML += tableHTML;
     }
 
-    // 3. LOGIKA WYSZUKIWARKI (PODŚWIETLANIE)
+    // 4. LOGIKA WYSZUKIWARKI (PODŚWIETLANIE)
     const searchInput = document.getElementById('searchInput');
     
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
             const szukanaFraza = e.target.value.toLowerCase().trim();
             
-            // Czyszczenie poprzednich podświetleń
             document.querySelectorAll('.table-icon').forEach(icon => {
                 icon.classList.remove('glow');
             });
 
-            // Jeśli pole jest puste, kończymy działanie
             if (szukanaFraza === "") return;
 
-            // Szukanie i podświetlanie odpowiednich stolików
             for (const [nr, goscie] of Object.entries(stoliki)) {
-                // Sprawdzamy, czy w danym stoliku jest ktoś pasujący do wyszukiwania
                 const czyKtosPasuje = goscie.some(g => g.toLowerCase().includes(szukanaFraza));
                 
                 if (czyKtosPasuje) {
