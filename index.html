@@ -4,17 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dominika & Adrian - Nasz Wielki Dzień</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/embed.css" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Twój arkusz stylów -->
     <link rel="stylesheet" href="style.css">
-    <link rel="script" href="script.js">
 </head>
 <body>
 
+    <!-- Nawigacja -->
     <nav class="navbar navbar-expand-lg navbar-light sticky-top py-3">
         <div class="container">
             <a class="navbar-brand font-serif" href="#">D & A</a>
@@ -25,6 +28,7 @@
                 <ul class="navbar-nav gap-3">
                     <li class="nav-item"><a class="nav-link" href="#start">Start</a></li>
                     <li class="nav-item"><a class="nav-link" href="#nasza-historia">Nasza Historia</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#galeria">Galeria</a></li>
                     <li class="nav-item"><a class="nav-link" href="#harmonogram">Harmonogram</a></li>
                     <li class="nav-item"><a class="nav-link" href="#potwierdzenie">RSVP</a></li>
                     <li class="nav-item"><a class="nav-link" href="./stolik.html">Sprawdź stoliki</a></li>
@@ -33,6 +37,7 @@
         </div>
     </nav>
 
+    <!-- Hero Section -->
     <header id="start" class="hero-section text-center">
         <div class="container">
             <p class="fs-4 text-uppercase tracking-wider mb-2">Bierzemy ślub!</p>
@@ -44,6 +49,7 @@
         </div>
     </header>
 
+    <!-- O nas -->
     <section id="nasza-historia" class="section-padding bg-white">
         <div class="container">
             <div class="row align-items-center g-5">
@@ -66,7 +72,67 @@
         </div>
     </section>
 
-    <section id="harmonogram" class="section-padding">
+    <!-- Galeria (Pływający Slider na 6 zdjęć) -->
+    <section id="galeria" class="section-padding bg-light position-relative">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title font-serif">Nasze Wspomnienia</h2>
+                <p class="text-muted">Kilka kadrów z naszej wspólnej drogi</p>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+                    <div id="weddingGallery" class="carousel slide carousel-fade floating-gallery" data-bs-ride="carousel">
+                        
+                        <!-- Wskaźniki na dole -->
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#weddingGallery" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#weddingGallery" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#weddingGallery" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#weddingGallery" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                            <button type="button" data-bs-target="#weddingGallery" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                            <button type="button" data-bs-target="#weddingGallery" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                        </div>
+                        
+                        <!-- Slajdy ze zdjęciami -->
+                        <div class="carousel-inner bg-white">
+                            <div class="carousel-item active" data-bs-interval="4000">
+                                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1200" class="d-block w-100 gallery-img" alt="Wspomnienie 1">
+                            </div>
+                            <div class="carousel-item" data-bs-interval="4000">
+                                <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=1200" class="d-block w-100 gallery-img" alt="Wspomnienie 2">
+                            </div>
+                            <div class="carousel-item" data-bs-interval="4000">
+                                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1200" class="d-block w-100 gallery-img" alt="Wspomnienie 3">
+                            </div>
+                            <div class="carousel-item" data-bs-interval="4000">
+                                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1200" class="d-block w-100 gallery-img" alt="Wspomnienie 4">
+                            </div>
+                            <div class="carousel-item" data-bs-interval="4000">
+                                <img src="https://images.unsplash.com/photo-1544078755-6b5d2d09bb2e?q=80&w=1200" class="d-block w-100 gallery-img" alt="Wspomnienie 5">
+                            </div>
+                            <div class="carousel-item" data-bs-interval="4000">
+                                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200" class="d-block w-100 gallery-img" alt="Wspomnienie 6">
+                            </div>
+                        </div>
+                        
+                        <!-- Przyciski nawigacji (strzałki L/P) -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#weddingGallery" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Poprzednie</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#weddingGallery" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Następne</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Harmonogram -->
+    <section id="harmonogram" class="section-padding bg-white">
         <div class="container">
             <div class="text-center mb-5">
                 <h2 class="section-title font-serif">Plan Dnia</h2>
@@ -111,20 +177,21 @@
         </div>
     </section>
 
-    <section id="potwierdzenie" class="section-padding bg-white">
+    <!-- RSVP / Potwierdzenie -->
+    <section id="potwierdzenie" class="section-padding bg-light">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6 text-center">
                     <h2 class="section-title font-serif">Potwierdź Obecność</h2>
                     <p class="text-muted mb-5">Prosimy o potwierdzenie przybycia do dnia 30 kwietnia 2027 r.</p>
                     
-                    <form class="text-start bg-light p-4 rounded shadow-sm">
+                    <form class="text-start bg-white p-4 rounded shadow-sm">
                         <div class="mb-3">
-                            <label for="name" class="form-label fw-600">Imię i Nazwisko</label>
+                            <label for="name" class="form-label fw-bold">Imię i Nazwisko</label>
                             <input type="text" class="form-control" id="name" placeholder="np. Anna i Jan Kowalscy" required>
                         </div>
                         <div class="mb-3">
-                            <label for="guests" class="form-label">Liczba osób dorosłych</label>
+                            <label for="guests" class="form-label fw-bold">Liczba osób dorosłych</label>
                             <select class="form-select" id="guests">
                                 <option value="1">1</option>
                                 <option value="2" selected>2</option>
@@ -133,7 +200,7 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label d-block">Czy potrzebujesz noclegu?</label>
+                            <label class="form-label d-block fw-bold">Czy potrzebujesz noclegu?</label>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="hotel" id="hotelYes" value="tak">
                                 <label class="form-check-input-label" for="hotelYes">Tak, poproszę</label>
@@ -144,7 +211,7 @@
                             </div>
                         </div>
                         <div class="mb-4">
-                            <label for="diet" class="form-label">Alergie / Dieta (opcjonalnie)</label>
+                            <label for="diet" class="form-label fw-bold">Alergie / Dieta (opcjonalnie)</label>
                             <textarea class="form-control" id="diet" rows="2" placeholder="np. wegetariańska, bezglutenowa"></textarea>
                         </div>
                         <button type="submit" class="btn btn-wedding w-100">Wyślij potwierdzenie</button>
@@ -162,6 +229,10 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bundle.min.js"></script>
+    <!-- POPRAWIONY LINK DO BOOTSTRAP JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Twój plik JS -->
+    <script src="script.js"></script>
 </body>
 </html>

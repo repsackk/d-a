@@ -267,3 +267,86 @@ body {
     }
     .dance-floor { display: none; }
 }
+
+/* PŁYWAJĄCA GALERIA (SLIDER) */
+.floating-gallery {
+    border: 8px solid #fff;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    animation: floating 6s ease-in-out infinite;
+    overflow: hidden;
+}
+
+.gallery-img {
+    height: 500px;
+    object-fit: cover;
+    border-radius: 5px; /* Delikatne zaokrąglenie samego zdjęcia wewnątrz */
+}
+
+/* Animacja unoszenia się */
+@keyframes floating {
+    0% { transform: translateY(0px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+    50% { transform: translateY(-10px); box-shadow: 0 25px 45px rgba(197, 168, 128, 0.2); }
+    100% { transform: translateY(0px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+}
+
+/* Stylizacja kontrolek slidera */
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: var(--wedding-gold);
+    border-radius: 50%;
+    padding: 20px;
+    background-size: 50%;
+}
+
+/* Ukrywamy koronkę na telefonach, żeby nie zabierała miejsca */
+@media (max-width: 992px) {
+    body::before, body::after {
+        display: none;
+    }
+    .gallery-img {
+        height: 350px;
+    }
+}
+
+/* Dodajemy relative do body, żeby koronka rozciągnęła się na całą wysokość strony, a nie tylko ekranu */
+body {
+    position: relative;
+}
+
+/* ---- WYTŁACZANA KORONKA 3D (SZYTY NA MIARĘ KOD SVG + EFEKT EMBOSS) ---- */
+body::before, body::after {
+    content: '';
+    position: absolute; /* <--- ZMIANA Z FIXED NA ABSOLUTE */
+    top: 0;
+    bottom: 0; /* Teraz to oznacza sam dół całej strony (stopkę) */
+    width: 90px;
+    z-index: 1030;
+    pointer-events: none; /* Pozwala klikać przez ten element */
+    
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 200'%3E%3Cpath fill='%23fbf9f6' d='M20,50 C20,20 50,10 50,10 C50,10 80,20 80,50 C80,80 50,100 50,100 C50,100 20,80 20,50 Z M50,100 C20,110 10,140 10,160 C10,180 50,190 50,190 C50,190 90,180 90,160 C90,140 80,110 50,100 Z M30,30 C40,20 60,20 70,30 C80,40 80,60 70,70 C60,80 40,80 30,70 C20,60 20,40 30,30 Z'/%3E%3Ccircle cx='50' cy='50' r='10' fill='%23fbf9f6'/%3E%3C/svg%3E");
+    background-size: 80px 160px;
+    background-repeat: repeat-y;
+    
+    filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.12)) 
+            drop-shadow(-3px -3px 4px rgba(255, 255, 255, 0.9));
+}
+
+/* Lewa strona */
+body::before {
+    left: 0;
+    background-position: left top;
+}
+
+/* Prawa strona - lustrzane odbicie */
+body::after {
+    right: 0;
+    background-position: right top;
+    transform: scaleX(-1);
+}
+
+/* Ukrywamy wzór na telefonach */
+@media (max-width: 992px) {
+    body::before, body::after {
+        display: none;
+    }
+}
