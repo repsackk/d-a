@@ -1,0 +1,249 @@
+:root {
+            --wedding-gold: #c5a880;
+            --wedding-dark: #2c2c2c;
+            --wedding-bg: #fbf9f6;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--wedding-bg);
+            color: var(--wedding-dark);
+            scroll-behavior: smooth;
+        }
+
+        .font-serif {
+            font-family: 'Alex Brush', cursive;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), 
+                        url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920') no-repeat center center;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-title {
+            font-size: 5.5rem;
+            color: #ffffff;
+        }
+
+        /* Sekcje */
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            color: var(--wedding-gold);
+            margin-bottom: 2rem;
+        }
+
+        /* Przyciski */
+        .btn-wedding {
+            background-color: var(--wedding-gold);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-wedding:hover {
+            background-color: #b3956b;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Karta Harmonogramu */
+        .timeline-card {
+            border: none;
+            border-left: 3px solid var(--wedding-gold);
+            border-radius: 0;
+            background: white;
+            transition: transform 0.3s;
+        }
+
+        .timeline-card:hover {
+            transform: translateX(5px);
+        }
+
+        /* Nawigacja */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .navbar-brand {
+            font-size: 2rem;
+            color: var(--wedding-gold) !important;
+        }
+
+        .nav-link {
+            color: var(--wedding-dark) !important;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-link:hover {
+            color: var(--wedding-gold) !important;
+        }
+        
+.table-card {
+    border: none;
+    border-bottom: 3px solid var(--wedding-gold);
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.table-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+
+#tableContainer .card {
+    background-color: #fff;
+}
+/* Kontener na całą salę */
+.wedding-hall-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px 40px;
+    justify-content: center;
+    padding: 40px 0;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Pojedynczy element: Stolik + Tooltip */
+.table-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Główna ikona stolika */
+.table-icon {
+    width: 70px;
+    height: 70px;
+    background-color: #fff;
+    border: 2px solid var(--wedding-gold, #c5a880);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--wedding-dark, #2c2c2c);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    position: relative;
+}
+
+/* Dekoracja imitująca krzesła dookoła stolika */
+.table-icon::before {
+    content: '';
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    border: 2px dashed rgba(197, 168, 128, 0.6);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+/* Efekt po najechaniu myszką */
+.table-wrapper:hover .table-icon {
+    background-color: var(--wedding-gold, #c5a880);
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* Dymek z listą gości (ukryty domyślnie) */
+.guests-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    background-color: rgba(44, 44, 44, 0.95);
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 12px;
+    width: max-content;
+    min-width: 180px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 100;
+    pointer-events: none; /* Zapobiega miganiu myszki */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Trójkącik na dole dymka */
+.guests-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 8px;
+    border-style: solid;
+    border-color: rgba(44, 44, 44, 0.95) transparent transparent transparent;
+}
+
+/* Wyświetlenie dymka przy najechaniu na stolik */
+.table-wrapper:hover .guests-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-25px);
+}
+
+/* Wnętrze dymka */
+.tooltip-title {
+    color: var(--wedding-gold, #c5a880);
+    font-family: 'Alex Brush', cursive;
+    font-size: 1.8rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.guests-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* EFEKT WYSZUKIWANIA - Świecący stolik */
+.table-icon.glow {
+    background-color: var(--wedding-gold, #c5a880);
+    color: #fff;
+    box-shadow: 0 0 25px 5px rgba(197, 168, 128, 0.7);
+    border-color: #fff;
+    transform: scale(1.1);
+}
+
+.table-icon.glow::before {
+    border-color: var(--wedding-gold, #c5a880);
+    border-style: solid;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 0.3; }
+    100% { transform: scale(1); opacity: 0.8; }
+}
